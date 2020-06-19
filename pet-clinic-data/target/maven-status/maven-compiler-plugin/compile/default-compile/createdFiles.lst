@@ -1,5 +1,8 @@
 com\omar\springframework\sfgpetclinic\model\Person.class
 com\omar\springframework\sfgpetclinic\model\Owner.class
+com\omar\springframework\sfgpetclinic\services\PetService.class
+com\omar\springframework\sfgpetclinic\services\OwnerService.class
+com\omar\springframework\sfgpetclinic\services\VetService.class
 com\omar\springframework\sfgpetclinic\model\PetType.class
 com\omar\springframework\sfgpetclinic\model\Pet.class
 com\omar\springframework\sfgpetclinic\model\Vet.class
