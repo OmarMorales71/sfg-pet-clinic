@@ -25,7 +25,7 @@ public class DataLoader implements CommandLineRunner {
 
         owner1.setFirstName("Omar");
         owner1.setLastName("Morales");
-        owner1.setId(1L);
+     ;
 
         ownerService.save(owner1);
 
@@ -33,7 +33,7 @@ public class DataLoader implements CommandLineRunner {
 
         owner2.setFirstName("Valeria Chidisima");
         owner2.setLastName("Vargas");
-        owner2.setId(2L);
+
 
         ownerService.save(owner2);
 
@@ -43,7 +43,7 @@ public class DataLoader implements CommandLineRunner {
 
         vet1.setFirstName("Giorgia");
         vet1.setLastName("Cordiglia");
-        vet1.setId(1L);
+        vet1.setId(5L);
 
         vetService.save(vet1);
 
@@ -51,7 +51,7 @@ public class DataLoader implements CommandLineRunner {
 
         vet2.setFirstName("Deborah");
         vet2.setLastName("Nonnis");
-        vet2.setId(2L);
+
 
         vetService.save(vet2);
 
