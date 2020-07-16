@@ -15,7 +15,7 @@ public class Owner extends Person{
     public void setAddress(String address) {
         this.address = address;
     }
-s
+
     public String getCity() {
         return city;
     }
