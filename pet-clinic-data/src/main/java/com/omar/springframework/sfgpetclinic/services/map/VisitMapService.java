@@ -2,9 +2,11 @@ package com.omar.springframework.sfgpetclinic.services.map;
 
 import com.omar.springframework.sfgpetclinic.model.Visit;
 import com.omar.springframework.sfgpetclinic.services.VisitService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class VisitMapService extends AbstractMapService<Visit, Long> implements VisitService {
 
 
