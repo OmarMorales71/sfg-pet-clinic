@@ -11,19 +11,22 @@ import static org.junit.jupiter.api.Assertions.*;
 class OwnerMapServiceTest {
 
     OwnerMapService ownerMapService;
+
     final Long ownerId = 1L;
-    final String ownerLastName = "Morales";
+    final String lastName = "Smith";
 
     @BeforeEach
     void setUp() {
         ownerMapService = new OwnerMapService(new PetTypeMapService(), new PetMapService());
-        ownerMapService.save(Owner.builder().id(ownerId).lastName(ownerLastName).build());
+
+        ownerMapService.save(Owner.builder().id(ownerId).lastName(lastName).build());
     }
 
     @Test
     void findAll() {
-        Set<Owner> owners = ownerMapService.findAll();
-        assertEquals(1, owners.size());
+        Set<Owner> ownerSet = ownerMapService.findAll();
+
+        assertEquals(1, ownerSet.size());
     }
 
     @Test
@@ -35,52 +38,53 @@ class OwnerMapServiceTest {
 
     @Test
     void saveExistingId() {
-        Long id = 7L;
-        Owner noSavedOwner = Owner.builder().id(id).build();
-        Owner savedOwner = ownerMapService.save(noSavedOwner);
+        Long id = 2L;
 
-        assertEquals(savedOwner, noSavedOwner);
+        Owner owner2 = Owner.builder().id(id).build();
+
+        Owner savedOwner = ownerMapService.save(owner2);
+
+        assertEquals(id, savedOwner.getId());
 
     }
 
     @Test
     void saveNoId() {
-        Owner noSavedOwner = Owner.builder().build();
-        Owner savedOwner = ownerMapService.save(noSavedOwner);
+
+        Owner savedOwner = ownerMapService.save(Owner.builder().build());
 
         assertNotNull(savedOwner);
         assertNotNull(savedOwner.getId());
-
     }
 
     @Test
     void delete() {
-        int totalOwners = ownerMapService.findAll().size();
         ownerMapService.delete(ownerMapService.findById(ownerId));
 
-        assertEquals(totalOwners-1, ownerMapService.findAll().size());
+        assertEquals(0, ownerMapService.findAll().size());
     }
 
     @Test
     void deleteById() {
-        int totalOwners = ownerMapService.findAll().size();
         ownerMapService.deleteById(ownerId);
 
-        assertEquals(totalOwners-1, ownerMapService.findAll().size());
+        assertEquals(0, ownerMapService.findAll().size());
     }
 
     @Test
     void findByLastName() {
-        Owner morales = ownerMapService.findByLastName(ownerLastName);
-        assertNotNull(morales);
+        Owner smith = ownerMapService.findByLastName(lastName);
 
-        assertEquals(ownerId, morales.getId());
+        assertNotNull(smith);
+
+        assertEquals(ownerId, smith.getId());
+
     }
 
     @Test
     void findByLastNameNotFound() {
-        Owner morales = ownerMapService.findByLastName("foo");
-        assertNull(morales);
+        Owner smith = ownerMapService.findByLastName("foo");
 
+        assertNull(smith);
     }
 }

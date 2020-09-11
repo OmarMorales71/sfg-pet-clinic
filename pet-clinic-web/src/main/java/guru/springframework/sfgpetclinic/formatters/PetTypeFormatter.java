@@ -9,8 +9,12 @@ import java.text.ParseException;
 import java.util.Collection;
 import java.util.Locale;
 
+/**
+ * Created by jt on 9/22/18.
+ */
 @Component
 public class PetTypeFormatter implements Formatter<PetType> {
+
     private final PetTypeService petTypeService;
 
     public PetTypeFormatter(PetTypeService petTypeService) {
@@ -18,18 +22,20 @@ public class PetTypeFormatter implements Formatter<PetType> {
     }
 
     @Override
-    public PetType parse(String s, Locale locale) throws ParseException {
-        Collection<PetType> findPetTypes = petTypeService.findAll();
-        for(PetType type : findPetTypes){
-            if(type.getName().equals(s)){
-                return type;
-            }
-        }
-        throw new ParseException("type not found: "+s, 0);
+    public String print(PetType petType, Locale locale) {
+        return petType.getName();
     }
 
     @Override
-    public String print(PetType petType, Locale locale) {
-        return petType.getName();
+    public PetType parse(String text, Locale locale) throws ParseException {
+        Collection<PetType> findPetTypes = petTypeService.findAll();
+
+        for (PetType type : findPetTypes) {
+            if (type.getName().equals(text)) {
+                return type;
+            }
+        }
+
+        throw new ParseException("type not found: " + text, 0);
     }
 }
